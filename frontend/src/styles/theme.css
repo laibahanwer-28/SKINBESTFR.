@@ -1,0 +1,32 @@
+:root {
+
+  /* Backgrounds */
+  --bg-main: #FFF5F9;
+  --bg-secondary: #F8F2FF;
+
+  /* Cards */
+  --card-bg: #FFFFFF;
+
+  /* Primary Colors */
+  --primary-pink: #F8BBD9;
+  --primary-purple: #D8B4FE;
+
+  /* Text */
+  --text-dark: #3B2F4A;
+  --text-light: #7B7288;
+
+  /* Success */
+  --success: #A7F3D0;
+
+  /* Error */
+  --error: #FCA5A5;
+
+  /* Radius */
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+
+  /* Shadow */
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
+
+}
