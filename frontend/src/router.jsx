@@ -6,7 +6,6 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Assessment from "./pages/Assessment";
 import Routine from "./pages/Routine";
-import Reminder from "./pages/Reminder";
 import Profile from "./pages/Profile";
 import Results from "./pages/Results";
 const router = createBrowserRouter([
@@ -37,10 +36,6 @@ const router = createBrowserRouter([
   {
     path: "/routine",
     element: <Routine />,
-  },
-  {
-    path: "/reminder",
-    element: <Reminder />,
   },
   {
     path: "/profile",
