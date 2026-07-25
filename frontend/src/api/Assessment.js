@@ -5,5 +5,23 @@ const API = axios.create({
 });
 
 export const saveAssessment = (data) => {
-  return API.post("/assessment", data);
+  const token = localStorage.getItem("token");
+
+  return API.post("/assessment", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
+
+export const getLatestAssessment = () => {
+  const token = localStorage.getItem("token");
+
+  return API.get("/assessment/latest", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+

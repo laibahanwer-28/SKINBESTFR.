@@ -3,23 +3,30 @@ import { generateRoutine } from "../services/groqService.js";
 
 export const saveAssessment = async (req, res) => {
   try {
-    // Save assessment in MongoDB
-    const assessment = new Assessment(req.body);
-    await assessment.save();
-
-    // Generate AI skincare routine
+    // Generate AI routine
     const aiRoutine = await generateRoutine(req.body);
 
-    // Send both assessment and AI routine back
+    // Save assessment linked to logged-in user
+    const assessment = await Assessment.create({
+      user: req.user._id,
+
+      skinType: req.body.skinType,
+      concerns: req.body.concerns,
+      goals: req.body.goals,
+      routinePreference: req.body.routinePreference,
+      lifestyle: req.body.lifestyle,
+
+      aiRoutine,
+    });
+
     res.status(201).json({
       success: true,
-      message: "Assessment saved successfully!",
       assessment,
       aiRoutine,
     });
 
   } catch (error) {
-    console.error("Assessment Error:", error);
+    console.error(error);
 
     res.status(500).json({
       success: false,
@@ -27,3 +34,28 @@ export const saveAssessment = async (req, res) => {
     });
   }
 };
+
+export const getLatestAssessment = async (req, res) => {
+  try {
+
+    const assessment = await Assessment.findOne({
+      user: req.user._id,
+    }).sort({ createdAt: -1 });
+
+    if (!assessment) {
+      return res.status(404).json({
+        message: "No assessment found",
+      });
+    }
+
+    res.json(assessment);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+};
+

@@ -87,11 +87,18 @@ function Assessment() {
 
         setLoading(false);
 
-        navigate("/results", {
-          state: {
-            aiRoutine: response.data.aiRoutine,
-          },
-        });
+       // Save AI routine
+localStorage.setItem(
+  "aiRoutine",
+  JSON.stringify(response.data.aiRoutine)
+);
+
+// Open Results page
+navigate("/results", {
+  state: {
+    aiRoutine: response.data.aiRoutine,
+  },
+});
 
       } catch (error) {
 
